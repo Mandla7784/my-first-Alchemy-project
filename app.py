@@ -11,19 +11,17 @@ app = Flask(__name__)
 
 
 """_summary_
- here we using flask like a hub for our paged 
+    here we using flask like a hub for our paged 
  
     Returns:
         _type_: _description_
     """
 
-
-
 #Routes
 @app.route("/")
 def index():
     
-    return "Testing 123"
+    return render_template("index.html")
 
 
 
