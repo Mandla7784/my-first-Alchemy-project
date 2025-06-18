@@ -1,6 +1,6 @@
 #imports
 
-from flask import Flask ,render_template
+from flask import Flask ,render_template ,request ,redirect , url_for
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -42,20 +42,36 @@ def index():
     return render_template("index.html")
 
 
-#create a new task
-
-@app.route("/tasks/create/" , methods=['GET','POST'])
-def create_task():
-    pass
-
-
-
 
 #Takss getting all tasks
 @app.route("/tasks/")
 def task_list():
     tasks = db.session.execute(db.select(TaskModel).order_by(TaskModel.task_Name)).scalars()
     return render_template("user/list.html", tasks = tasks)
+
+
+#create a new task
+
+@app.route("/tasks/create/" , methods=['GET','POST'])
+def create_task():
+    
+        if request.method == "POST":
+            task = TaskModel(
+            task_name=request.form["taskName"],
+            task_id=request.form["id"],
+        )
+        db.session.add(task)
+        db.session.commit()
+        return redirect(url_for("user_detail", id=task.id))
+
+
+
+
+
+
+
+
+
 
 def main():
     app.run(debug=True);
