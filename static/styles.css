@@ -1,3 +1,36 @@
 body {
-  background-color: wheat;
+  background-color: white;
+  color: black;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+.btn {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.btn-delete {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background-color: darkred;
+}
+
+.btn-delete:active {
+  background-color: maroon;
+}
+
+.btn-delete:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.5);
 }/*# sourceMappingURL=styles.css.map */
