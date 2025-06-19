@@ -76,6 +76,25 @@ def create_task():
 def get_task(task_id):
     pass
 
+
+
+#Delete task
+@app.route()
+def delete(int:id):
+    deleted_task = TaskModel.query.get_or_404(id)
+    
+    try:
+        db.session.delete(deleted_task)
+        db.session.commit()
+        return redirect("/")
+    except Exception as e:
+        print("Error" ,e)
+        return f"Error,{e}"
+    
+    
+    
+
+
 def main():
     app.run(debug=True);
     
