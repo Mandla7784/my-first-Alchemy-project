@@ -7,12 +7,8 @@ from flask_sqlalchemy import SQLAlchemy
 #My App
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///SchoolTask.db"
 db = SQLAlchemy(app)
-
-db.init_app(app)
-
-
 
 class TaskModel(db.Model):
     
@@ -40,16 +36,11 @@ with app.app_context():
 def index():
     
     return render_template("index.html")
-
-
-
 #Takss getting all tasks
 @app.route("/tasks/")
 def task_list():
     tasks = db.session.execute(db.select(TaskModel).order_by(TaskModel.task_Name)).scalars()
-    return render_template("user/list.html", tasks = tasks)
-
-
+    return render_template("/list.html", tasks = tasks)
 #create a new task
 
 @app.route("/tasks/create/" , methods=['GET','POST'])
@@ -60,18 +51,14 @@ def create_task():
             task_name=request.form["taskName"],
             task_id=request.form["id"],
         )
-        db.session.add(task)
-        db.session.commit()
-        return redirect(url_for("user_detail", id=task.id))
+            db.session.add(task)
+            db.session.commit()
+            return redirect(url_for("user_detail", id=task.id))
+        return render_template(url_for("task/create.html"))
 
-
-
-
-
-
-
-
-
+@app.route("/tasks/<int:task_id>" ,methods=['GET'])
+def get_task(task_id):
+    pass
 
 def main():
     app.run(debug=True);
