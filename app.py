@@ -10,19 +10,22 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///SchoolTask.db"
 db = SQLAlchemy(app)
 
+
+from datetime import datetime
+
 class TaskModel(db.Model):
     
     id = db.Column(db.Integer , primary_key = True)
     task_Name = db.Column(db.String(50) , nullable=False)
+    completed = db.Column(db.DateTime  , default=datetime.utcnow) 
+    content = db.Column(db.String(100) , nullable = False)
     
     
     def __repr__(self):
-        return f"Task({self.task_Name})"
+        return f"Task({self.task_Name} , {self.id})"
     
 
-with app.app_context():
-    db.create_all()
-    
+
 
 """_summary_
     here we using flask like a hub for our paged 
@@ -64,4 +67,7 @@ def main():
     app.run(debug=True);
     
 if __name__=="__main__":
+    with app.app_context():
+        db.create_all()
+        
     main()
