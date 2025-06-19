@@ -1,5 +1,13 @@
+$primary-color: blue;
+$secondary-color: red;
+$font-family: Arial, sans-serif;
+$background-color: white;
+$button-padding: 10px 20px;
+$button-border: none;
+
 body {
-  background-color: white;
+  background-color: $background-color;
+  font-family: $font-family;
   color: black;
   font-family: Arial, sans-serif;
   margin: 0;

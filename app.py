@@ -73,7 +73,9 @@ def create_task():
 
 @app.route("/tasks/<int:task_id>" ,methods=['GET'])
 def get_task(task_id):
-    pass
+    if request.method == 'GET':  
+        task = TaskModel.query.get(TaskModel.id == task_id)
+        return render_template("index.html", task=task)
 
 #Delete task
 @app.route("/delete/<int:id>" , methods=['GET'])
