@@ -79,8 +79,8 @@ def get_task(task_id):
 
 
 #Delete task
-@app.route()
-def delete(int:id):
+@app.route("/delete/<int:id>" , methods=['GET'])
+def delete(int:id) -> str:
     deleted_task = TaskModel.query.get_or_404(id)
     
     try:
@@ -90,11 +90,29 @@ def delete(int:id):
     except Exception as e:
         print("Error" ,e)
         return f"Error,{e}"
-    
-    
-    
 
 
+#Edit TASK
+@app.route("/update/<int:id>")
+def edit(int:id) -> str:
+    task = TaskModel.query.get_or_404(id)
+    
+    if request.method == "POST":
+        task.content =request.form['content']
+        try:
+            db.session.commit()
+            return redirect("/")
+        
+        except Exception as e:
+            return f"ERROR, {e}"
+        
+    else:
+        return "HOME"
+        
+        
+    
+    
+    
 def main():
     app.run(debug=True);
     
