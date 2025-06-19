@@ -17,15 +17,12 @@ class TaskModel(db.Model):
     
     id = db.Column(db.Integer , primary_key = True)
     task_Name = db.Column(db.String(50) , nullable=False)
-    completed = db.Column(db.DateTime  , default=datetime.utcnow) 
+    created = db.Column(db.DateTime  , default=datetime.utcnow) 
     content = db.Column(db.String(100) , nullable = False)
     
     
     def __repr__(self):
         return f"Task({self.task_Name} , {self.id})"
-    
-
-
 
 """_summary_
     here we using flask like a hub for our paged 
@@ -35,10 +32,25 @@ class TaskModel(db.Model):
     """
 
 #Routes
-@app.route("/" , methods=['GET'])
+@app.route("/" , methods=['GET','POST'])
 def index():
-    
-    return render_template("index.html")
+    if request.method == "POST":
+        current_task = request.form["content"]
+        new_task = TaskModel(content=current_task)
+        try:
+            
+            db.session.add(new_task)
+            db.session.commit()
+            return redirect("/")
+        
+        except Exception as e:
+            print("Error" ,e)
+            return f"Error {e}"
+        
+    else:
+        tasks = TaskModel.query.order_by(TaskModel.created)
+        return render_template("index.html" , tasks=tasks)
+
 #Takss getting all tasks
 @app.route("/tasks/")
 def task_list():
@@ -57,7 +69,8 @@ def create_task():
             db.session.add(task)
             db.session.commit()
             return redirect(url_for("user_detail", id=task.id))
-        return render_template(url_for("task/create.html"))
+        elif request.method == "GET":
+            return render_template(url_for("task/create.html"))
 
 @app.route("/tasks/<int:task_id>" ,methods=['GET'])
 def get_task(task_id):
