@@ -1,7 +1,6 @@
 #imports
 
 from flask import Flask ,render_template ,request ,redirect , url_for
-
 from flask_sqlalchemy import SQLAlchemy
 
 #My App
@@ -76,8 +75,6 @@ def create_task():
 def get_task(task_id):
     pass
 
-
-
 #Delete task
 @app.route("/delete/<int:id>" , methods=['GET'])
 def delete(int:id) -> str:
@@ -93,7 +90,7 @@ def delete(int:id) -> str:
 
 
 #Edit TASK
-@app.route("/update/<int:id>")
+@app.route("/update/<int:id>",methods=["GET","POST"])
 def edit(int:id) -> str:
     task = TaskModel.query.get_or_404(id)
     
@@ -109,10 +106,7 @@ def edit(int:id) -> str:
     else:
         return "HOME"
         
-        
-    
-    
-    
+
 def main():
     app.run(debug=True);
     
