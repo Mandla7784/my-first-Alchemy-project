@@ -17,9 +17,9 @@ app.config['SECRET_KEY'] = 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6'
 def index():
     return  "hi"
 
-@app.route("/pos" , methods=["GET","POST"])
+@app.route("/posts" , methods=["GET","POST"])
 def get_posts():
-    return render_template('pos.html' , posts=posts)
+    return render_template('posts.html' , posts=posts)
 
 
 

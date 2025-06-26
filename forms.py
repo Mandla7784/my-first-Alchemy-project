@@ -23,3 +23,8 @@ class LoginForm(FlaskForm):
     submit= SubmitField("Log In")
     
     
+class PayBillForm(FlaskForm):
+    card_number = ""
+    card_cvc = ""
+    card_name = ""
+    
