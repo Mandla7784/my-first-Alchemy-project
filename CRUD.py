@@ -13,9 +13,9 @@ app = Flask(__name__ , template_folder="templates")
 app.config['SECRET_KEY'] = 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6'
 
 #ROUTES
-@app.route("/", )
+@app.route("/home", )
 def index():
-    return render_template("pos.html" ,posts=posts )
+    return  "hi"
 
 @app.route("/pos" , methods=["GET","POST"])
 def get_posts():
