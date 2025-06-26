@@ -5,10 +5,13 @@ Making a CRUD application
 
 from flask import Flask , jsonify , redirect , render_template
 from _sqlite3 import sqlite_version
-
+from posts import posts
+from forms import RegistrationForm , LoginForm
 #app init 
 app = Flask(__name__ , template_folder=".")
 #ROUTES
+
+
 
 @app.route("/", methods=[])
 def index():
@@ -16,7 +19,7 @@ def index():
 
 @app.route("/posts" , methods=["GET","POST"])
 def get_Posts():
-    pass
+    return render_template("posts.html" , posts=posts)
 
 
 
