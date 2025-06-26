@@ -768,3 +768,57 @@ class BinarySearchTree {
 }
 
 const bst = new BinarySearchTree();
+
+/**
+ * Topics To Cover
+ * Pointers in js
+ * Event loop
+ * Web workers
+ */
+
+/**
+ * POINTERS
+ * every variable has a memory location . allocated to memory
+ * every memory has an addres
+ *
+ * So basically a pointer is a varibale wich has an address of another variable
+ * it referances to the value stored in the variable
+ *
+ *
+ *
+ *
+ *
+ */
+
+let num1 = 23;
+let age = num1 + 2;
+
+let obj1 = {
+  value: "Value",
+};
+let obj2 = obj1;
+obj2.value.replace("king");
+
+/**
+ * Single Thread and Event Loop
+ * Web Apis => DOM , timers
+ * event loop keeps checking if call stack is Empty if yes
+ * it grabs the task from the queue and run them
+ */
+
+function sayHello() {
+  console.log("Hello");
+}
+
+setTimeout(sayHello(), 5000);
+
+setTimeout(function greet() {
+  console.log("I am greeting ");
+}, 2000);
+
+Promise.resolve().then(() => console.log("Hi"));
+
+const worker = new Worker("worker.js");
+worker.onmessage = function () {};
+
+worker.postMessage(1000);
