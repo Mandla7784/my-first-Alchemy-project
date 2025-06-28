@@ -54,3 +54,12 @@ function diplayBooks(books = new Array()) {
     console.log(b["name"] + b["title"] + b["author"]);
   });
 }
+
+const worker = new Worker("worker.js");
+
+function sendingMessage() {
+  worker.postMessage("Hello worker");
+}
+worker.onmessage() = function(){
+  
+}
