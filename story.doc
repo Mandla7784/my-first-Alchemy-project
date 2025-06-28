@@ -1,0 +1,34 @@
+📘 User Story: Robot Movement
+Title: Robot Movement Functionality
+ As a player using the robot system,
+ I want my robot to move within the world grid based on commands,
+ So that I can navigate and interact with the environment effectively.
+
+✅ Acceptance Criteria / Scenarios
+Scenario 1: Move Forward Within Bounds
+Given the robot is placed at position (2,3) facing NORTH
+ When the robot receives a MOVE command
+ Then it should move to position (2,4)
+ And a success message should be returned
+
+Scenario 2: Prevent Movement Outside World Bounds
+Given the robot is at the edge of the world at (0,0) facing SOUTH
+ When it receives a MOVE command
+ Then it should stay at (0,0)
+ And a message should be returned indicating it cannot move further in that direction
+
+Scenario 3: Move in All Four Directions
+Given the robot is at position (5,5)
+ When it faces EAST and receives a MOVE
+ Then it should move to (6,5)
+When it turns RIGHT to face SOUTH and receives a MOVE
+ Then it should move to (6,4)
+When it turns RIGHT again to face WEST and receives a MOVE
+ Then it should move to (5,4)
+
+Scenario 4: Movement with Obstacle Blocking
+Given the robot is at (3,3) facing NORTH
+ And an obstacle exists at (3,4)
+ When it receives a MOVE command
+ Then it should stay at (3,3)
+ And a message should be returned that an obstacle is in the way

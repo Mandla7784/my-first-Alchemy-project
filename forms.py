@@ -2,9 +2,6 @@ from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired , Length ,Email ,EqualTo 
 from wtforms import StringField , PasswordField ,SubmitField ,BooleanField
 
-
-
-
 class RegistrationForm(FlaskForm):
     username = StringField("Username" , validators=[DataRequired(),Length(min=2 , max=20)])
     email = StringField("Email" ,validators=[DataRequired(), Email()])
@@ -24,7 +21,11 @@ class LoginForm(FlaskForm):
     
     
 class PayBillForm(FlaskForm):
-    card_number = ""
-    card_cvc = ""
-    card_name = ""
+    card_number = StringField("card_nnumber" , validators=[DataRequired() , Length(min=2 ,max=11)])
+    card_cvc =  StringField("card_cv" , validators=[DataRequired() , Length(min=2 , max=3)])
+    card_name = StringField("card_name" ,validators=[DataRequired() ])
+    
+    checkout = SubmitField("checkout")
+    
+    
     
