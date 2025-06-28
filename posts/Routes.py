@@ -1,7 +1,6 @@
 
 from posts import (posts , redirect,render_template , RegistrationForm , url_for , flash , app  , LoginForm , PayBillForm)
 
-
 #ROUTES
 @app.route("/home", )
 def index():
