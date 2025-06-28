@@ -1,0 +1,40 @@
+$primary-color: blue;
+$secondary-color: red;
+$font-family: Arial, sans-serif;
+$background-color: white;
+$button-padding: 10px 20px;
+$button-border: none;
+
+body {
+  background-color: $background-color;
+  font-family: $font-family;
+  color: black;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+.btn {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.btn-delete {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.btn-delete:hover {
+  background-color: darkred;
+}
+.btn-delete:active {
+  background-color: maroon;
+}
+.btn-delete:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.5);
+}
