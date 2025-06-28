@@ -30,6 +30,20 @@ class User(db.Model):
     def __repr__(self):
         return f"User:{self.username} + {self.email} +{self.id}"
     
+    
+    
+from datetime import datetime
+class PostModel(db.Model):
+    id = db.Column(db.Integer , primary_key=True)
+    author = db.Column(db.String(20) , nullable=False)
+    title = db.Column(db.String(20) , unique=True , nullable=False)
+    content = db.Column(db.Text , nullable=False)
+    date_posted = db.Column(db.DateTime , nullable=False , default=datetime.utcnow)
+    
+    
+    def __repr__(self):
+        return f"Posts:{self.author }:  {self.title} : {self.id} "
+    
 
 
 #ROUTES
