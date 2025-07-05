@@ -17,7 +17,9 @@ async function getData(url, name) {
 
     for (let book of books) {
       if (book.name === name) console.log(book);
-      return "Not found", 401;
+       else{
+        return "Not found", 401
+       };
     }
   } catch (error) {
     console.error(error.message);
@@ -41,7 +43,9 @@ async function getBook_by_ID(id, url) {
 
       for (const b of available_books) {
         if (b["id"] === id) return b;
-        return "Book not found", 401;
+          else {
+            return "Book not found", 401
+          };
       }
     }
   } catch (error) {
@@ -56,7 +60,6 @@ function diplayBooks(books = new Array()) {
 }
 
 const worker = new Worker("worker.js");
-
 function sendingMessage() {
   worker.postMessage("Hello worker");
 }
