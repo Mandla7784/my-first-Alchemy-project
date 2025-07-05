@@ -1,0 +1,36 @@
+
+# its a query labguage for API's
+#Basics 
+# Schema, QUery , Mutation , Resolvers
+const query = `
+
+`
+type User{
+    id:ID!
+    firstName:String!
+    email:String!
+    lastName:String!
+    age:Int!
+    isOnlie:Boolean !
+}
+
+type Job{
+    id:ID!
+    company:String!
+    position:String!
+    salary:Int
+}
+
+type Query{
+    getAllUsers:[User]!
+    getUser(id:ID!)
+    me:User
+}
+
+type Mutation{
+
+createUser(input:createUserInout):User
+createUser(input:updateUserInout):User
+createUser(input:deleteUserInout):User
+
+}
